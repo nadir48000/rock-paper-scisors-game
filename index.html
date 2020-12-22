@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-paper-scisors</title>
+</head>
+<body>
+    <script>
+        function computerPlay () {
+            let randomNum = Math.floor(Math.random() * Math.floor(3));
+            if (randomNum === 0) {
+                return 'Paper';
+            }
+            else if (randomNum === 1) {
+                return 'Rock';
+            }
+            else {
+                return 'Scisors';
+            }
+               
+        }
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function playRound (playerSelection , computerSelection) {
+            
+            let toLowercase = playerSelection.toLowerCase();
+            let firstLetter = toLowercase.charAt(0);
+            let firstLetterUpperCase = firstLetter.toUpperCase();
+            playerSelection  = toLowercase.replace(firstLetter , firstLetterUpperCase);
+
+       
+
+            if (playerSelection == computerSelection) {
+                console.log('Draw');
+                return playerScore , computerScore;  
+            }
+            else if (playerSelection == "Rock" && computerSelection == "Scisors") {
+                console.log(`You win ! ${playerSelection} defeat ${computerSelection} `);
+                return ++playerScore;
+            }
+            else if (playerSelection == "Scisors" && computerSelection == "Paper") {
+                console.log(`You win ! ${playerSelection} win ${computerSelection} `);
+                return ++playerScore;
+            }
+            else if (playerSelection == "Paper" && computerSelection == "Rock") {
+                console.log(`You win ! ${playerSelection} defeat ${computerSelection} `);
+                return ++playerScore;
+            }
+            else {
+                console.log(`Computer win ! ${computerSelection} defeat ${playerSelection} `);
+                return ++computerScore;
+            }
+            
+     
+         }
+
+    
+        function game() {
+            const playerSelection = prompt("Choose : Rock , Paper or Scisors");
+            const computerSelection = computerPlay();
+            if (playerScore === 5) {
+                return 'Congratulation you win !';
+            }
+            else if (computerScore === 5){
+                return 'Unfortunatly computer win !';
+            }
+            else {
+                return playRound(playerSelection , computerSelection);
+            }
+            
+        }   
+
+        
+    </script>
+</body>
+</html>
